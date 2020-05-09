@@ -19,3 +19,6 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'carrierwave', '~> 2.1'
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
