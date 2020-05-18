@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_many :posts
+    has_many :used_tokens
     mount_uploader :avatar, AvatarUploader
     has_secure_password
 
