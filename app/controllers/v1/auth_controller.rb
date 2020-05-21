@@ -1,18 +1,15 @@
 class V1::AuthController < ApplicationController
   before_action :auth_request, only: :sign_out
-  # after_action :auth_request, only: :sign_up
 
   def sign_up
     @user = User.create(user_params)
-    # JsonWebToken.encode(@user)
-    render json: @user
+    render_user(@user)
   end
-    
+
   def sign_in
     @user = User.find_by_email(params[:email])
     if @user&.authenticate(params[:password])
-      token = JsonWebToken.encode(@user)
-      render json: { token: token }
+      render_user(@user)
     else
       render json: { error: "There is an error in your email address or password." }
     end
@@ -31,5 +28,11 @@ class V1::AuthController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def render_user(user)
+    response = ActiveModelSerializers::SerializableResource.new(user, serializer: UserSerializer, root: 'user', adapter: :json).as_json
+    response[:token] = JsonWebToken.encode(user)
+    render json: response
   end
 end

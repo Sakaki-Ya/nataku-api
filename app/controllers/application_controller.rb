@@ -4,11 +4,12 @@ class ApplicationController < ActionController::API
         token = header.split(" ").last if header
         begin
             @decoded = JsonWebToken.decode(token)
-            @current_user = User.find(@decoded[:user_id])
+            @user = User.new
+            @user.current_user = User.find(@decoded[:sub])
         rescue ActiveRecord::RecordNotFound => e
-            render json: { errors: e.message }
+            render json: { error: e.message }
         rescue JWT::DecodeError => e
-            render json: { text: e.message }
+            render json: { error: e.message }
         end
     end
 end

@@ -23,3 +23,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carrierwave', '~> 2.1'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'jwt', '~> 2.2', '>= 2.2.1'
+gem 'active_model_serializers', '~> 0.10.10'
