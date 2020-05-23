@@ -2,8 +2,6 @@ class User < ApplicationRecord
     has_many :posts
     mount_uploader :avatar, AvatarUploader
     has_secure_password
-    
-    attr_accessor :current_user
 
     validates :name, length: { minimum: 1, maximum: 10,
         message: "Must be between 1 and 10 characters." }

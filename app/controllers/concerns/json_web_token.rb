@@ -3,8 +3,7 @@ module JsonWebToken
   
     def self.encode(user)
         id = user.id
-        uuid = SecureRandom.uuid
-        jti = Digest::MD5.hexdigest([SECRET_KEY, uuid].join(":").to_s)
+        jti = SecureRandom.uuid
         exp = 2.weeks.from_now.to_i
         payload = { sub: id, jti: jti, exp: exp }
         JWT.encode(payload, SECRET_KEY, "HS256")
