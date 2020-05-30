@@ -24,3 +24,4 @@ gem 'carrierwave', '~> 2.1'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'jwt', '~> 2.2', '>= 2.2.1'
 gem 'active_model_serializers', '~> 0.10.10'
+gem "activesupport", ">= 6.0.3.1"
