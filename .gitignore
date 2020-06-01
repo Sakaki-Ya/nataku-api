@@ -77,3 +77,5 @@ yarn-debug.log*
 /tmp/db
 
 .DS_Store
+
+/public/uploads

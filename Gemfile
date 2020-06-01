@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 
 ruby '2.5.8'
 
@@ -24,4 +24,5 @@ gem 'carrierwave', '~> 2.1'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'jwt', '~> 2.2', '>= 2.2.1'
 gem 'active_model_serializers', '~> 0.10.10'
-gem "activesupport", ">= 6.0.3.1"
+gem 'activesupport', '>= 6.0.3.1'
+gem 'mini_magick', '~> 4.10', '>= 4.10.1'
