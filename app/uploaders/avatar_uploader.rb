@@ -20,4 +20,15 @@ class AvatarUploader < CarrierWave::Uploader::Base
   def content_type_whitelist
     [/image\//]
   end
+
+  # 下記設定を有効にすると、attach_avatarアクションでエラーが発生します。
+  # version :config_thumb do
+  #   process resize_to_fit: [100, 100, "#f8f8f8", "Center"]
+  # end
+  # version :post_thumb do
+  #   process resize_to_fit: [50, 50, "#f8f8f8", "Center"]
+  # end
+  # 
+  # 下記リンクは私が投稿したIssueです。
+  # https://github.com/minimagick/minimagick/issues/515
 end

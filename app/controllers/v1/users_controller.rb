@@ -2,21 +2,25 @@ class V1::UsersController < ApplicationController
     before_action :auth_request, :id_check
 
     def show
-        render json: current_user
+        @user = User.find(params[:id])
+        render json: @user
     end
 
     def update
-        current_user.update!(user_params)
-        render json: current_user
+        @user = User.find(params[:id])
+        @user.update(user_params)
+        render json: @user
     end
 
     def destroy
-        current_user.destroy
+        User.find(params[:id]).destroy
     end
 
     def attach_avatar
-        current_user.avatar = params[:avatar]
-        render json: current_user
+        @user = User.find(params[:id])
+        @user.avatar = params[:avatar]
+        @user.save
+        render json: @user
     end
 
     private
@@ -25,8 +29,8 @@ class V1::UsersController < ApplicationController
     end
 
     def id_check
-        if params[:id].to_i != current_user["id"]
-            render json: { error: "It is not authorized." }
+        if params[:id].to_i != current_user.id
+            render status: 401, json: { error: "It is not authorized." }
         end
     end
 end
