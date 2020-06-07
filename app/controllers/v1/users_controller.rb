@@ -19,7 +19,7 @@ class V1::UsersController < ApplicationController
     def attach_avatar
         @user = User.find(params[:id])
         @user.avatar = params[:avatar]
-        @user.save
+        @user.save!
         render json: @user
     end
 
