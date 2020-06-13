@@ -1,4 +1,5 @@
 class V1::PostsController < ApplicationController
+    before_action :auth_request, only: :create
     before_action :post_params, only: :create
 
     def index
@@ -12,19 +13,16 @@ class V1::PostsController < ApplicationController
     end
 
     def create
-        @post = Post.create!(post_params)
+        postData = post_params
+        if current_user != nil
+            postData[:user_id] = current_user.id
+        end
+        @post = Post.create!(postData)
         render json: @post
     end
 
     private
     def post_params
-        auth_request()
-        if current_user == nil then
-            params.require(:post).permit(:content)
-        else
-            postData = params.require(:post).permit(:content)
-            postData[:user_id] = current_user.id
-            return postData
-        end
+        params.require(:post).permit(:content)
     end
 end
