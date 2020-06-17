@@ -13,13 +13,11 @@
 ActiveRecord::Schema.define(version: 2020_05_18_070145) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "posts", force: :cascade do |t|
-    t.string "type", null: false
     t.string "content", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"

@@ -2,7 +2,7 @@ class V1::AuthController < ApplicationController
   before_action :auth_request, only: :sign_out
 
   def sign_up
-    @user = User.create(user_params)
+    @user = User.create!(user_params)
     render_user(@user)
   end
 
@@ -20,7 +20,7 @@ class V1::AuthController < ApplicationController
     if UsedToken.find_by(jti: current_jti)
       render json: { error: "Already signed out." }
     else
-      usedToken = UsedToken.create(jti: current_jti)
+      usedToken = UsedToken.create!(jti: current_jti)
       render json: usedToken
     end
   end
